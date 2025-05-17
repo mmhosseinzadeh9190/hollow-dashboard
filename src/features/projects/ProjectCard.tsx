@@ -152,7 +152,7 @@ function ProjectCard({ project, fullHeight }: ProjectCardProps) {
 
   return (
     <div
-      className={`flex ${fullHeight ? "min-w-96 overflow-y-auto" : ""} flex-col gap-1.5 rounded-2.5xl bg-white p-4 shadow-sm`}
+      className={`flex ${fullHeight && "min-w-96 overflow-y-auto"} flex-col gap-1.5 rounded-2.5xl bg-white p-4 shadow-sm`}
     >
       <div className="flex items-center justify-between gap-4">
         <h3

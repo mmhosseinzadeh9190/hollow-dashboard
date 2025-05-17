@@ -9,6 +9,7 @@ import { User } from "../services/apiUsers";
 import { insertUser } from "../services/apiAuth";
 import { useActivity } from "../features/activity/useActivity";
 import { useProjects } from "../features/projects/useProjects";
+import { useTeams } from "../features/dashboard/useTeams";
 
 function AppLayout() {
   const {
@@ -31,6 +32,8 @@ function AppLayout() {
     error: projectsError,
     refetch: projectsRefetch,
   } = useProjects();
+
+  const { teams, isLoading: teamsIsLoading, error: teamsError } = useTeams();
 
   const { user: supabaseUser, isLoading: userIsLoading } = useUser();
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -87,6 +90,7 @@ function AppLayout() {
     usersIsLoading ||
     activitiesIsLoading ||
     projectsIsLoading ||
+    teamsIsLoading ||
     userIsLoading ||
     isInsertingUser
   ) {
@@ -104,6 +108,7 @@ function AppLayout() {
           user={currentUser}
           activities={activities?.data!}
           projects={projects?.data!}
+          teams={teams?.data!}
           onActivitiesUpdated={activitiesRefetch}
           onProjectsUpdated={projectsRefetch}
         />
