@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../ui/Button";
+import toast from "react-hot-toast";
 
 interface SocialAuthButtonsProps {
   isPending: boolean;
@@ -20,7 +21,9 @@ function SocialAuthButtons({
     <div className="flex flex-wrap gap-4">
       <div className="flex w-full gap-4">
         <Button
-          onClick={handleFacebookAuth}
+          onClick={() =>
+            toast.error("Unfortunately, Facebook is currently unavailable.")
+          }
           disabled={isPending}
           className="flex w-1/2 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-sm font-semibold text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed disabled:bg-gray-200"
         >
@@ -38,7 +41,9 @@ function SocialAuthButtons({
         </Button>
 
         <Button
-          onClick={handleTwitterAuth}
+          onClick={() =>
+            toast.error("Unfortunately, X is currently unavailable.")
+          }
           disabled={isPending}
           className="flex w-1/2 items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-sm font-semibold text-gray-700 hover:bg-gray-100 disabled:cursor-not-allowed disabled:bg-gray-200"
         >
