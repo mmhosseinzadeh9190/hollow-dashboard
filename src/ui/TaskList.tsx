@@ -13,7 +13,7 @@ import { Activity } from "../services/apiActivity";
 import PreMadeButtons from "./PreMadeButtons";
 import { Project } from "../services/apiProjects";
 import {
-  capitalizeAllFirstLetters,
+  capitalizeFirstLetter,
   daysUntil,
   formatISODateToCustomFormat,
 } from "../utils/helpers";
@@ -129,6 +129,8 @@ function TaskList({
           const project = projects.find(
             (project) => project.id === task.project_id,
           );
+          if (!project) return;
+
           const isTaskDone = project?.tasks_done?.includes(task.content![0]);
           const daysLeft = daysUntil(task.timestamp!);
           let textColor = "text-gray-700",
@@ -149,8 +151,8 @@ function TaskList({
               className="flex flex-col gap-1 border-b-2 border-dashed border-gray-200 py-4 first-of-type:pt-0 last-of-type:border-b-0 last-of-type:pb-0"
               key={task.id}
             >
-              <p className="truncate font-roboto font-medium capitalize tracking-0.1 text-gray-900">
-                {task.content}
+              <p className="truncate font-roboto font-medium tracking-0.1 text-gray-900">
+                {capitalizeFirstLetter(task.content![0])}
               </p>
               <div className="flex items-end justify-between">
                 <div className="flex flex-col gap-1">
@@ -161,9 +163,9 @@ function TaskList({
                         handleCloseModal();
                         navigate(`/projects/${project?.id}`);
                       }}
-                      className="max-w-96 cursor-pointer truncate font-roboto text-sm font-medium tracking-0.1 text-primary-800 hover:text-primary-900 hover:underline"
+                      className="max-w-96 cursor-pointer truncate font-roboto text-sm font-medium capitalize tracking-0.1 text-primary-800 hover:text-primary-900 hover:underline"
                     >
-                      {capitalizeAllFirstLetters(project?.name!)}
+                      {project?.name!}
                     </span>
                   </span>
                   <span

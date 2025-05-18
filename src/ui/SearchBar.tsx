@@ -61,7 +61,7 @@ function SearchBar({ projects, teams, user }: SearchBarProps) {
         <div className="flex max-h-xl w-xl flex-col gap-6">
           <div className="flex items-center justify-between">
             <h2 className="font-roboto text-xl font-medium tracking-0.1 text-gray-900">
-              Projects
+              Results
             </h2>
             <Button
               onClick={handleCloseModal}
